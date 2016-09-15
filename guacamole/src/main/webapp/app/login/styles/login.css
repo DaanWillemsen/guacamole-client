@@ -52,7 +52,7 @@ div.login-ui {
     color: #964040;
 }
 
-.login-ui .login-fields .form-field .password-field .toggle-password {
+.login-ui .login-fields .form-field .password-field .toggle-password .yubikey-field .toggle-yubikey {
     display: none;
 }
 

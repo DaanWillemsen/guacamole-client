@@ -22,6 +22,7 @@
         "ACTION_SAVE"               : "Opslaan",
         "ACTION_SEARCH"             : "Zoeken",
         "ACTION_UPDATE_PASSWORD"    : "Wijzig Wachtwoord",
+        "ACTION_UPDATE_YUBIKEY"    :  "Wijzig Yubikey",
         "ACTION_VIEW_HISTORY"       : "Gebruikgeschiedenis",
 
         "DIALOG_HEADER_ERROR" : "Fout",
@@ -31,6 +32,12 @@
 
         "FIELD_HEADER_PASSWORD"       : "Wachtwoord:",
         "FIELD_HEADER_PASSWORD_AGAIN" : "Nogmaals uw wachtwoord:",
+
+        "ERROR_YUBIKEY_BLANK"    : "Uw yubikey mag niet leeg zijn.",
+        "ERROR_YUBIKEY_MISMATCH" : "De opgegeven yubikeys komen niet overeen.",
+
+        "FIELD_HEADER_YUBIKEY"       : "Yubikey:",
+        "FIELD_HEADER_YUBIKEY_AGAIN" : "Nogmaals uw yubikey:",
 
         "FIELD_PLACEHOLDER_FILTER" : "Filter",
 
@@ -142,6 +149,9 @@
         "HELP_SHOW_PASSWORD" : "Klik om wachtwoord te tonen",
         "HELP_HIDE_PASSWORD" : "Klik om wachtwoord te verbergen"
 
+        "HELP_SHOW_YUBIKEY" : "Klik om yubikey te tonen",
+        "HELP_HIDE_YUBIKEY" : "Klik om yubikey te verbergen"
+
     },
 
     "HOME" : {
@@ -153,6 +163,8 @@
         "INFO_NO_RECENT_CONNECTIONS" : "Geen recente verbindingen.",
 
         "PASSWORD_CHANGED" : "Wachtwoord gewijzigd.",
+
+        "YUBIKEY_CHANGED" : "Yubikey gewijzigd.",
 
         "SECTION_HEADER_ALL_CONNECTIONS"    : "Alle Verbindingen",
         "SECTION_HEADER_RECENT_CONNECTIONS" : "Recente Verbindingen"
@@ -170,7 +182,8 @@
         "ERROR_INVALID_LOGIN" : "Ongeldige Login",
 
         "FIELD_HEADER_USERNAME" : "Gebruikersnaam",
-        "FIELD_HEADER_PASSWORD" : "Wachtwoord"
+        "FIELD_HEADER_PASSWORD" : "Wachtwoord",
+        "FIELD_HEADER_YUBIKEY" : "Yubikey"
 
     },
 
@@ -244,13 +257,18 @@
 
         "ERROR_PASSWORD_MISMATCH" : "@:APP.ERROR_PASSWORD_MISMATCH",
 
+        "ERROR_YUBIKEY_MISMATCH" : "@:APP.ERROR_YUBIKEY_MISMATCH",
+
         "FIELD_HEADER_ADMINISTER_SYSTEM"             : "Systeem Beheer:",
         "FIELD_HEADER_CHANGE_OWN_PASSWORD"           : "Wijzigen eigen wachtwoord:",
+        "FIELD_HEADER_CHANGE_OWN_YUBIKEY"            : "Wijzigen eigen wachtwoord:",
         "FIELD_HEADER_CREATE_NEW_USERS"              : "Nieuwe gebruikers aanmaken:",
         "FIELD_HEADER_CREATE_NEW_CONNECTIONS"        : "Nieuwe verbindingen aanmaken:",
         "FIELD_HEADER_CREATE_NEW_CONNECTION_GROUPS"  : "Nieuwe verbindingsgroepen aanmaken:",
         "FIELD_HEADER_PASSWORD"                      : "@:APP.FIELD_HEADER_PASSWORD",
         "FIELD_HEADER_PASSWORD_AGAIN"                : "@:APP.FIELD_HEADER_PASSWORD_AGAIN",
+        "FIELD_HEADER_YUBIKEY"                       : "@:APP.FIELD_HEADER_YUBIKEY",
+        "FIELD_HEADER_YUBIKEY_AGAIN"                 : "@:APP.FIELD_HEADER_YUBIKEY_AGAIN",
         "FIELD_HEADER_USERNAME"                      : "Gebruikersnaam:",
 
         "FIELD_PLACEHOLDER_FILTER" : "@:APP.FIELD_PLACEHOLDER_FILTER",
@@ -292,6 +310,7 @@
         "FIELD_HEADER_IGNORE_CERT"     : "Negeer server certificaat:",
         "FIELD_HEADER_INITIAL_PROGRAM" : "Eerste programma:",
         "FIELD_HEADER_PASSWORD"        : "Wachtwoord:",
+        "FIELD_HEADER_YUBIKEY"         : "Yubikey:",
         "FIELD_HEADER_PORT"            : "Poort:",
         "FIELD_HEADER_PRECONNECTION_BLOB" : "Voor te bereiden BLOB (VM ID):",
         "FIELD_HEADER_PRECONNECTION_ID"   : "RDP bron ID:",
@@ -307,6 +326,7 @@
         "FIELD_HEADER_SFTP_HOSTNAME"    : "Servernaam:",
         "FIELD_HEADER_SFTP_PASSPHRASE"  : "Wachtwoordzin:",
         "FIELD_HEADER_SFTP_PASSWORD"    : "Wachtwoord:",
+        "FIELD_HEADER_SFTP_YUBIKEY"     : "Yubikey:",
         "FIELD_HEADER_SFTP_PORT"        : "Poort:",
         "FIELD_HEADER_SFTP_PRIVATE_KEY" : "Persoonlijke sleutel:",
         "FIELD_HEADER_SFTP_USERNAME"    : "Gebruikersnaam:",
@@ -366,6 +386,7 @@
         "FIELD_HEADER_HOSTNAME"    : "Servernaam:",
         "FIELD_HEADER_USERNAME"    : "Gebruikersnaam:",
         "FIELD_HEADER_PASSWORD"    : "Wachtwoord:",
+        "FIELD_HEADER_YUBIKEY"     : "Yubikey:",
         "FIELD_HEADER_PASSPHRASE"  : "Wachtwoordzin:",
         "FIELD_HEADER_PORT"        : "Poort:",
         "FIELD_HEADER_PRIVATE_KEY" : "Persoonlijke sleutel:",
@@ -419,6 +440,8 @@
         "FIELD_HEADER_USERNAME"       : "Gebruikersnaam:",
         "FIELD_HEADER_PASSWORD"       : "Wachtwoord:",
         "FIELD_HEADER_PASSWORD_REGEX" : "Wachtwoord reguliere expressie:",
+        "FIELD_HEADER_YUBIKEY"        : "Yubikey:",
+        "FIELD_HEADER_PASSWORD_REGEX" : "Yubikey reguliere expressie:",
         "FIELD_HEADER_PORT"           : "Poort:",
         "FIELD_HEADER_RECORDING_NAME" : "Opname naam:",
         "FIELD_HEADER_RECORDING_PATH" : "Opname map:",
@@ -563,17 +586,25 @@
         "ACTION_ACKNOWLEDGE"        : "@:APP.ACTION_ACKNOWLEDGE",
         "ACTION_CANCEL"             : "@:APP.ACTION_CANCEL",
         "ACTION_UPDATE_PASSWORD"    : "@:APP.ACTION_UPDATE_PASSWORD",
+        "ACTION_UPDATE_YUBIKEY"     : "@:APP.ACTION_UPDATE_YUBIKEY",
 
         "DIALOG_HEADER_ERROR"    : "@:APP.DIALOG_HEADER_ERROR",
 
         "ERROR_PASSWORD_BLANK"    : "@:APP.ERROR_PASSWORD_BLANK",
         "ERROR_PASSWORD_MISMATCH" : "@:APP.ERROR_PASSWORD_MISMATCH",
 
+        "ERROR_YUBIKEY_BLANK"    : "@:APP.ERROR_YUBIKEY_BLANK",
+        "ERROR_YUBIKEY_MISMATCH" : "@:APP.ERROR_YUBIKEY_MISMATCH",
+
         "FIELD_HEADER_LANGUAGE"           : "Taal Keuze:",
         "FIELD_HEADER_PASSWORD"           : "Wachtwoord:",
         "FIELD_HEADER_PASSWORD_OLD"       : "Huidig Wachtwoord:",
         "FIELD_HEADER_PASSWORD_NEW"       : "Nieuw Wachtwoord:",
         "FIELD_HEADER_PASSWORD_NEW_AGAIN" : "Bevestig Nieuw Wachtwoord:",
+        "FIELD_HEADER_YUBIKEY"            : "Yubikey:",
+        "FIELD_HEADER_YUBIKEY_OLD"        : "Huidige Yubikey:",
+        "FIELD_HEADER_YUBIKEY_NEW"        : "Nieuwe Yubikey:",
+        "FIELD_HEADER_YUBIKEY_NEW_AGAIN" : "Bevestig Nieuw Wachtwoord:",
         "FIELD_HEADER_USERNAME"           : "Gebruikersnaam:",
 
         "HELP_DEFAULT_INPUT_METHOD" : "De standaard invoer methode bepaalt hoe toetsenbord gebeurtenissen ontvangen worden door Guacamole. Het veranderen van deze instelling kan nodig zijn bij gebruik van een mobiel apparaat of wanneer er via een IME getypt wordt. Deze instelling kan per verbinding worden overschreven via het Guacamole menu.",
@@ -585,8 +616,10 @@
         "HELP_MOUSE_MODE_ABSOLUTE"  : "@:CLIENT.HELP_MOUSE_MODE_ABSOLUTE",
         "HELP_MOUSE_MODE_RELATIVE"  : "@:CLIENT.HELP_MOUSE_MODE_RELATIVE",
         "HELP_UPDATE_PASSWORD"      : "Als u uw wachtwoord wilt wijzigen, voer dan uw huidige wachtwoord en uw nieuwe wachtwoord hieronder in en klik op \"Wijzig Wachtwoord\". Deze wijziging zal meteen actief zijn.",
+        "HELP_UPDATE_YUBIKEY"      : "Als u uw wachtwoord wilt wijzigen, voer dan uw huidige wachtwoord en uw nieuwe wachtwoord hieronder in en klik op \"Wijzig Wachtwoord\".  Deze wijziging zal meteen actief zijn.",
 
         "INFO_PASSWORD_CHANGED" : "Wachtwoord gewijzigd.",
+        "INFO_YUBIKEY_CHANGED"  : "Yubikey gewijzigd.",
 
         "NAME_INPUT_METHOD_NONE" : "@:CLIENT.NAME_INPUT_METHOD_NONE",
         "NAME_INPUT_METHOD_OSK"  : "@:CLIENT.NAME_INPUT_METHOD_OSK",
@@ -594,7 +627,8 @@
 
         "SECTION_HEADER_DEFAULT_INPUT_METHOD" : "Standaard Invoer Methode",
         "SECTION_HEADER_DEFAULT_MOUSE_MODE"   : "Standaard Muis Emulatie Modus",
-        "SECTION_HEADER_UPDATE_PASSWORD"      : "Wijzig Wachtwoord"
+        "SECTION_HEADER_UPDATE_PASSWORD"      : "Wijzig Wachtwoord",
+        "SECTION_HEADER_UPDATE_YUBIKEY"       : "Wijzig Yubikey"
 
     },
 

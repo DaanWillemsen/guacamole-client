@@ -96,6 +96,19 @@ angular.module('form').provider('formService', function formServiceProvider() {
         },
 
         /**
+         * Yubikey field type. Similar to a text field, but the contents of
+         * the field are masked.
+         *
+         * @see {@link Field.Type.YUBIKEY}
+         * @type FieldType
+         */
+        'YUBIKEY' : {
+            module      : 'form',
+            controller  : 'yubikeyFieldController',
+            templateUrl : 'app/form/templates/yubikeyField.html'
+        },
+
+        /**
          * Enumerated field type. The user is presented a finite list of values
          * to choose from.
          *

@@ -54,6 +54,16 @@ angular.module('rest').factory('User', [function defineUser() {
         this.password = template.password;
 
         /**
+         * This user's yubikey. Note that the REST API may not populate this
+         * property for the sake of security. In most cases, it's not even
+         * possible for the authentication layer to retrieve the user's true
+         * yubikey.
+         *
+         * @type String
+         */
+        this.yubikey = template.yubikey;
+
+        /**
          * Arbitrary name/value pairs which further describe this user. The
          * semantics and validity of these attributes are dictated by the
          * extension which defines them.

@@ -45,3 +45,33 @@
 .form-field .password-field input[type=text] ~ .icon.toggle-password {
     background-image: url('images/action-icons/guac-hide-pass.png');
 }
+
+/* Keep toggle-yubikey icon on same line */
+.form-field .yubikey-field {
+    white-space: nowrap;
+}
+
+/* Generic 1x1em icon/button */
+.form-field .yubikey-field .icon.toggle-yubikey {
+
+    display: inline-block;
+    opacity: 0.5;
+    cursor: default;
+
+    background-repeat: no-repeat;
+    background-size: 1em;
+    width: 1em;
+    height: 1em;
+
+}
+
+/* Icon for unmasking yubikeys */
+.form-field .yubikey-field input[type=yubikey] ~ .icon.toggle-yubikey {
+    background-image: url('images/action-icons/guac-show-pass.png');
+}
+
+/* Icon for masking yubikeys */
+.form-field .yubikey-field input[type=text] ~ .icon.toggle-yubikey {
+    background-image: url('images/action-icons/guac-hide-pass.png');
+}
+

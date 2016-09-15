@@ -94,6 +94,15 @@ angular.module('rest').factory('Field', [function defineField() {
         PASSWORD : 'PASSWORD',
 
         /**
+         * The type string associated with parameters that may contain an
+         * arbitrary string, where that string represents the yubikey of the
+         * user authenticating with the remote desktop service.
+         *
+         * @type String
+         */
+        PASSWORD : 'YUBIKEY',
+
+        /**
          * The type string associated with parameters that may contain only
          * numeric values.
          * 

@@ -135,7 +135,7 @@ angular.module('login').directive('guacLogin', [function guacLogin() {
         });
 
         /**
-         * Submits the currently-specified username and password to the
+         * Submits the currently-specified username, password and yubikey to the
          * authentication service, redirecting to the main view if successful.
          */
         $scope.login = function login() {
@@ -171,6 +171,14 @@ angular.module('login').directive('guacLogin', [function guacLogin() {
 
                         // Remove entered value only if field is a password field
                         if (field.type === Field.Type.PASSWORD && field.name in $scope.enteredValues)
+                            $scope.enteredValues[field.name] = '';
+
+                    });
+                    // Clear all visible password fields
+                    angular.forEach($scope.remainingFields, function clearEnteredValueIfYubikey(field) {
+
+                        // Remove entered value only if field is a password field
+                        if (field.type === Field.Type.YUBIKEY && field.name in $scope.enteredValues)
                             $scope.enteredValues[field.name] = '';
 
                     });

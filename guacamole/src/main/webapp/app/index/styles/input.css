@@ -35,6 +35,20 @@ div.location, input[type=text], input[type=number], input[type=password], textar
     cursor: text;
 }
 
+div.location, input[type=text], input[type=number], input[type=yubikey], textarea {
+    border: 1px solid #777;
+    -moz-border-radius: 0.2em;
+    -webkit-border-radius: 0.2em;
+    -khtml-border-radius: 0.2em;
+    border-radius: 0.2em;
+    width: 100%;
+    max-width: 16em;
+    padding: 0.25em;
+    font-size: 0.8em;
+    background: white;
+    cursor: text;
+}
+
 textarea {
     max-width: none;
     width: 30em;

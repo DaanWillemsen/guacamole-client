@@ -36,6 +36,14 @@
                     <th>{{'MANAGE_USER.FIELD_HEADER_PASSWORD_AGAIN' | translate}}</th>
                     <td><input ng-model="passwordMatch" type="password" /></td>
                 </tr>
+                <tr>
+                    <th>{{'MANAGE_USER.FIELD_HEADER_YUBIKEY' | translate}}</th>
+                    <td><input ng-model="user.yubikey" type="yubikey" /></td>
+                </tr>
+                <tr>
+                    <th>{{'MANAGE_USER.FIELD_HEADER_YUBIKEY_AGAIN' | translate}}</th>
+                    <td><input ng-model="yubikeyMatch" type="yubikey" /></td>
+                </tr>
             </table>
         </div>
 
@@ -59,6 +67,11 @@
                         <th>{{'MANAGE_USER.FIELD_HEADER_CHANGE_OWN_PASSWORD' | translate}}</th>
                         <td><input type="checkbox" ng-model="permissionFlags.userPermissions.UPDATE[selfUsername]"
                                                    ng-change="userPermissionChanged('UPDATE', selfUsername)"/></td>
+                    </tr>
+                    <tr>
+                        <th>{{'MANAGE_USER.FIELD_HEADER_CHANGE_OWN_YUBIKEY' | translate}}</th>
+                        <td><input type="checkbox" ng-model="permissionFlags.userPermissions.UPDATE[selfUsername]"
+                                   ng-change="userPermissionChanged('UPDATE', selfUsername)"/></td>
                     </tr>
                 </table>
             </div>

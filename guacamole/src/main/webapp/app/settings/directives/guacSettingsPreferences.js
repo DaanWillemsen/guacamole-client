@@ -172,6 +172,85 @@ angular.module('settings').directive('guacSettingsPreferences', [function guacSe
                 
             };
 
+            /**
+             * The new yubikey for the user.
+             *
+             * @type String
+             */
+            $scope.newYubikey = null;
+
+            /**
+             * The yubikey match for the user. The update yubikey action will
+             * fail if $scope.newYubikey !== $scope.yubikeyMatch.
+             *
+             * @type String
+             */
+            $scope.newYubikeyMatch = null;
+
+            /**
+             * Whether the current user can change their own , or null
+             * if this is not yet known.
+             *
+             * @type Boolean
+             */
+            $scope.canChangeYubikey = null;
+
+            /**
+             * Update the current user's yubikey to the  yubikey currently set within
+             * the yubikey change dialog.
+             */
+            $scope.updateYubikey = function updateYubikey() {
+
+                // Verify yubikeys match
+                if ($scope.newYubikeyMatch !== $scope.newYubikey) {
+                    guacNotification.showStatus({
+                        className  : 'error',
+                        title      : 'SETTINGS_PREFERENCES.DIALOG_HEADER_ERROR',
+                        text       : 'SETTINGS_PREFERENCES.ERROR_YUBIKEY_MISMATCH',
+                        actions    : [ ACKNOWLEDGE_ACTION ]
+                    });
+                    return;
+                }
+
+                // Verify that the new yubikey is not blank
+                if (!$scope.newYubikey) {
+                    guacNotification.showStatus({
+                        className  : 'error',
+                        title      : 'SETTINGS_PREFERENCES.DIALOG_HEADER_ERROR',
+                        text       : 'SETTINGS_PREFERENCES.ERROR_YUBIKEY_BLANK',
+                        actions    : [ ACKNOWLEDGE_ACTION ]
+                    });
+                    return;
+                }
+
+                // Save the user with the new yubikey
+                userService.updateUserYubikey(dataSource, username, $scope.oldYubikey, $scope.newYubikey)
+                    .success(function yubikeyUpdated() {
+
+                        // Clear the yubikey fields
+                        $scope.oldYubikey      = null;
+                        $scope.newYubikey      = null;
+                        $scope.newYubikeyMatch = null;
+
+                        // Indicate that the yubikey has been changed
+                        guacNotification.showStatus({
+                            text    : 'SETTINGS_PREFERENCES.INFO_YUBIKEY_CHANGED',
+                            actions : [ ACKNOWLEDGE_ACTION ]
+                        });
+                    })
+
+                    // Notify of any errors
+                    .error(function yubikeyUpdateFailed(error) {
+                        guacNotification.showStatus({
+                            className  : 'error',
+                            title      : 'SETTINGS_PREFERENCES.DIALOG_HEADER_ERROR',
+                            'text'       : error.message,
+                            actions    : [ ACKNOWLEDGE_ACTION ]
+                        });
+                    });
+
+            };
+
             // Retrieve defined languages
             languageService.getLanguages()
             .success(function languagesRetrieved(languages) {
@@ -184,8 +263,11 @@ angular.module('settings').directive('guacSettingsPreferences', [function guacSe
 
                 // Add action for changing password if permission is granted
                 $scope.canChangePassword = PermissionSet.hasUserPermission(permissions,
-                        PermissionSet.ObjectPermissionType.UPDATE, username);
-                        
+                        PermissionSet.ObjectPermissionType.UPDATE, username)
+
+                    // Add action for changing yubikey if permission is granted
+                    $scope.canChangeYubikey = PermissionSet.hasUserPermission(permissions,
+                        PermissionSet.ObjectPermissionType.UPDATE, username)
             });
 
             /**
@@ -198,6 +280,7 @@ angular.module('settings').directive('guacSettingsPreferences', [function guacSe
             $scope.isLoaded = function isLoaded() {
 
                 return $scope.canChangePassword !== null
+                    && $scope.canChangeYubikey  !== null
                     && $scope.languages         !== null;
 
             };

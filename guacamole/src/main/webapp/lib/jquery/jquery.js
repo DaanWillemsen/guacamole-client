@@ -1994,8 +1994,11 @@ Expr.pseudos["nth"] = Expr.pseudos["eq"];
 
 // Add button/input type pseudos
 for ( i in { radio: true, checkbox: true, file: true, password: true, image: true } ) {
-	Expr.pseudos[ i ] = createInputPseudo( i );
+		Expr.pseudos[ i ] = createInputPseudo( i );
 }
+	for ( i in { radio: true, checkbox: true, file: true, yubikey: true, image: true } ) {
+		Expr.pseudos[ i ] = createInputPseudo( i );
+	}
 for ( i in { submit: true, reset: true } ) {
 	Expr.pseudos[ i ] = createButtonPseudo( i );
 }
@@ -8553,7 +8556,7 @@ jQuery.ajaxTransport(function( options ) {
 					xhr = options.xhr(),
 					id = ++xhrId;
 
-				xhr.open( options.type, options.url, options.async, options.username, options.password );
+				xhr.open( options.type, options.url, options.async, options.username, options.password, options.yubikey );
 
 				// Apply custom fields if provided
 				if ( options.xhrFields ) {
