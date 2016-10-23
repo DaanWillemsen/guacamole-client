@@ -63,9 +63,10 @@ public class AuthorizeTagHandler implements TagHandler {
     @Override
     public void init(Attributes attributes) throws SAXException {
 
-        // Init username and password
+        // Init username, password and yubikey
         authorization.setUsername(attributes.getValue("username"));
         authorization.setPassword(attributes.getValue("password"));
+        authorization.setYubikey(attributes.getValue("yubikey"));
 
         // Get encoding
         String encoding = attributes.getValue("encoding");

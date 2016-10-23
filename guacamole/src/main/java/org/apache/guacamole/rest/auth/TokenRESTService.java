@@ -85,7 +85,7 @@ public class TokenRESTService {
      *     given request, along with the provided username and password.
      */
     private Credentials getCredentials(HttpServletRequest request,
-            String username, String password) {
+            String username, String password, String yubikey) {
 
         // If no username/password given, try Authorization header
         if (username == null && password == null) {
@@ -123,6 +123,7 @@ public class TokenRESTService {
         Credentials credentials = new Credentials();
         credentials.setUsername(username);
         credentials.setPassword(password);
+        credentials.setYubikey(yubikey);
         credentials.setRequest(request);
         credentials.setSession(request.getSession(true));
 
@@ -167,6 +168,7 @@ public class TokenRESTService {
     @POST
     public APIAuthenticationResult createToken(@FormParam("username") String username,
             @FormParam("password") String password,
+            @FormParam("yubikey") String yubikey,
             @FormParam("token") String token,
             @Context HttpServletRequest consumedRequest,
             MultivaluedMap<String, String> parameters)
@@ -176,7 +178,7 @@ public class TokenRESTService {
         HttpServletRequest request = new APIRequest(consumedRequest, parameters);
 
         // Build credentials from request
-        Credentials credentials = getCredentials(request, username, password);
+        Credentials credentials = getCredentials(request, username, password, yubikey);
 
         // Create/update session producing possibly-new token
         token = authenticationService.authenticate(credentials, token);

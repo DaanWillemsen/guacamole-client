@@ -31,7 +31,7 @@ angular.module('form').controller('yubikeyFieldController', ['$scope',
          * @type String
          * @default 'yubikey'
          */
-        $scope.yubikeyInputType = 'yubikey';
+        $scope.yubikeyInputType = 'password';
 
         /**
          * Returns a string which describes the action the next call to

@@ -44,6 +44,11 @@ public class APIUser {
     private String password;
     
     /**
+     * The yubikey associated with the user.
+     */
+    private String yubikey;
+    
+    /**
      * Map of all associated attributes by attribute identifier.
      */
     private Map<String, String> attributes;
@@ -62,6 +67,7 @@ public class APIUser {
         // Set user information
         this.username = user.getIdentifier();
         this.password = user.getPassword();
+        this.setYubikey(user.getYubikey());
 
         // Associate any attributes
         this.attributes = user.getAttributes();
@@ -99,6 +105,14 @@ public class APIUser {
     public void setPassword(String password) {
         this.password = password;
     }
+    
+	public String getYubikey() {
+		return yubikey;
+	}
+
+	public void setYubikey(String yubikey) {
+		this.yubikey = yubikey;
+	}
 
     /**
      * Returns a map of all attributes associated with this user. Each entry
@@ -123,5 +137,7 @@ public class APIUser {
     public void setAttributes(Map<String, String> attributes) {
         this.attributes = attributes;
     }
+
+
 
 }

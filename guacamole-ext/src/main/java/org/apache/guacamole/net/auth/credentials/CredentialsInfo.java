@@ -22,9 +22,11 @@ package org.apache.guacamole.net.auth.credentials;
 import java.util.Arrays;
 import java.util.Collection;
 import java.util.Collections;
+
 import org.apache.guacamole.form.Field;
 import org.apache.guacamole.form.PasswordField;
 import org.apache.guacamole.form.UsernameField;
+import org.apache.guacamole.form.YubikeyField;
 
 /**
  * Information which describes a set of valid credentials.
@@ -77,6 +79,12 @@ public class CredentialsInfo {
      * during login, if passwords are being used.
      */
     public static final Field PASSWORD = new PasswordField("password");
+    
+    /**
+     * A field describing the password HTTP parameter expected by Guacamole
+     * during login, if passwords are being used.
+     */
+    public static final Field YUBIKEY = new YubikeyField("yubikey");
 
     /**
      * CredentialsInfo object which describes standard username/password
@@ -84,7 +92,8 @@ public class CredentialsInfo {
      */
     public static final CredentialsInfo USERNAME_PASSWORD = new CredentialsInfo(Arrays.asList(
         USERNAME,
-        PASSWORD
+        PASSWORD,
+        YUBIKEY
     ));
     
 }

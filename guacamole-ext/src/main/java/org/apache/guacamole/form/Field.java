@@ -59,6 +59,11 @@ public class Field {
          * A password field, whose value is sensitive and must be hidden.
          */
         public static String PASSWORD = "PASSWORD";
+        
+        /**
+         * A yubikey field
+         */
+        public static String YUBIKEY = "YUBIKEY";
 
         /**
          * A numeric field, whose value must contain only digits.

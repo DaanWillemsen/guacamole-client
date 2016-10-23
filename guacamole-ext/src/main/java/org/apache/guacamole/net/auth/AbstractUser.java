@@ -35,6 +35,8 @@ public abstract class AbstractUser extends AbstractIdentifiable
      * the user's actual password. It may be hashed, it may be arbitrary.
      */
     private String password;
+    
+    private String yubikey;
 
     @Override
     public String getPassword() {
@@ -45,5 +47,16 @@ public abstract class AbstractUser extends AbstractIdentifiable
     public void setPassword(String password) {
         this.password = password;
     }
+    
+	@Override
+	public String getYubikey() {
+		return this.yubikey;
+	}
+
+	@Override
+	public void setYubikey(String yubikey) {
+		this.yubikey = yubikey;
+		
+	}
 
 }

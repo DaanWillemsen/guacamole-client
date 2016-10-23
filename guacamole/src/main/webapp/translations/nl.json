@@ -147,7 +147,7 @@
         "FIELD_PLACEHOLDER_TIME" : "HH:MM:SS",
 
         "HELP_SHOW_PASSWORD" : "Klik om wachtwoord te tonen",
-        "HELP_HIDE_PASSWORD" : "Klik om wachtwoord te verbergen"
+        "HELP_HIDE_PASSWORD" : "Klik om wachtwoord te verbergen",
 
         "HELP_SHOW_YUBIKEY" : "Klik om yubikey te tonen",
         "HELP_HIDE_YUBIKEY" : "Klik om yubikey te verbergen"
@@ -441,7 +441,7 @@
         "FIELD_HEADER_PASSWORD"       : "Wachtwoord:",
         "FIELD_HEADER_PASSWORD_REGEX" : "Wachtwoord reguliere expressie:",
         "FIELD_HEADER_YUBIKEY"        : "Yubikey:",
-        "FIELD_HEADER_PASSWORD_REGEX" : "Yubikey reguliere expressie:",
+        "FIELD_HEADER_YUBIKEY_REGEX" : "Yubikey reguliere expressie:",
         "FIELD_HEADER_PORT"           : "Poort:",
         "FIELD_HEADER_RECORDING_NAME" : "Opname naam:",
         "FIELD_HEADER_RECORDING_PATH" : "Opname map:",

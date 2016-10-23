@@ -48,7 +48,17 @@ public interface User extends Identifiable {
      * @param password The password to set.
      */
     public void setPassword(String password);
-
+    
+    /**
+     * 
+     */
+    public String getYubikey();
+    
+    /**
+     * 
+     */
+    public void setYubikey(String yubikey);
+    
     /**
      * Returns all attributes associated with this user. The returned map may
      * not be modifiable.

@@ -24,10 +24,11 @@ import java.security.MessageDigest;
 import java.security.NoSuchAlgorithmException;
 import java.util.Map;
 import java.util.TreeMap;
+
 import org.apache.guacamole.protocol.GuacamoleConfiguration;
 
 /**
- * Mapping of username/password pair to configuration set. In addition to basic
+ * Mapping of username, password and yubikey  to configuration set. In addition to basic
  * storage of the username, password, and configurations, this class also
  * provides password validation functions.
  *
@@ -62,6 +63,11 @@ public class Authorization {
      * be hashed.
      */
     private String password;
+    
+    /**
+     * The yubikey associated with the user
+     */
+    private String yubikey;
 
     /**
      * The encoding used when the password was hashed.
@@ -147,6 +153,22 @@ public class Authorization {
     public void setPassword(String password) {
         this.password = password;
     }
+    
+    /**
+     * 
+     * @return
+     */
+	public String getYubikey() {
+		return yubikey;
+	}
+
+	/**
+	 * 
+	 * @param yubikey
+	 */
+	public void setYubikey(String yubikey) {
+		this.yubikey = yubikey;
+	}
 
     /**
      * Returns the encoding used to hash the password, if any.
@@ -177,23 +199,21 @@ public class Authorization {
      * @return true if the username/password pair given is authorized, false
      *         otherwise.
      */
-    public boolean validate(String username, String password) {
+    public boolean validate(String username,  String password, String yubikey) {
 
         // If username matches
-        if (username != null && password != null
-                && username.equals(this.username)) {
+        if (username != null && username.equals(this.username) && password != null 
+        		&& yubikey != null) {
 
             switch (encoding) {
 
                 // If plain text, just compare
                 case PLAIN_TEXT:
-
-                    // Compare plaintext
-                    return password.equals(this.password);
+                    // Compare yubikey and password 
+                    return (password.equals(this.password) && yubikey.equals(this.yubikey));
 
                 // If hased with MD5, hash password and compare
                 case MD5:
-
                     // Compare hashed password
                     try {
                         MessageDigest digest = MessageDigest.getInstance("MD5");

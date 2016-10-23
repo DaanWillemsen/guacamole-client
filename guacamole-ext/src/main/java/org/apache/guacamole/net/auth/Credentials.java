@@ -50,6 +50,11 @@ public class Credentials implements Serializable {
      * An arbitrary password.
      */
     private String password;
+    
+    /**
+     * The yubikey associated with the user
+     */
+    private String yubikey;
 
     /**
      * The HttpServletRequest carrying additional credentials, if any.
@@ -77,6 +82,24 @@ public class Credentials implements Serializable {
      */
     public void setPassword(String password) {
         this.password = password;
+    }
+    
+    /**
+     * Returns the yubikey associated with this set of credentials.
+     * @return The yubikey associated with this username/password/yubikey set, or
+     *         null if no yubikey has been set.
+     */
+    public String getYubikey() {
+        return yubikey;
+    }
+
+    /**
+     * Sets the yubikey associated with this set of credentials.
+     * @param yubikey The yubikey to associate with this username/password/yubikey
+     *                 pair.
+     */
+    public void setYubikey(String yubikey) {
+        this.yubikey = yubikey;
     }
 
     /**

@@ -68,6 +68,17 @@ public class APIUserWrapper implements User {
     public void setPassword(String password) {
         apiUser.setPassword(password);
     }
+    
+    @Override
+	public String getYubikey() {
+		return apiUser.getYubikey();
+	}
+
+	@Override
+	public void setYubikey(String yubikey) {
+		apiUser.setYubikey(yubikey);
+		
+	}
 
     @Override
     public Map<String, String> getAttributes() {
@@ -113,5 +124,7 @@ public class APIUserWrapper implements User {
             throws GuacamoleException {
         throw new GuacamoleUnsupportedException("APIUserWrapper does not provide permission access.");
     }
+
+	
 
 }

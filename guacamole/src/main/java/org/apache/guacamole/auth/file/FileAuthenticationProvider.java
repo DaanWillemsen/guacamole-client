@@ -24,15 +24,17 @@ import java.io.File;
 import java.io.FileInputStream;
 import java.io.IOException;
 import java.io.InputStream;
+import java.util.HashMap;
 import java.util.Map;
+
 import org.apache.guacamole.GuacamoleException;
 import org.apache.guacamole.environment.Environment;
 import org.apache.guacamole.environment.LocalEnvironment;
 import org.apache.guacamole.net.auth.Credentials;
 import org.apache.guacamole.net.auth.simple.SimpleAuthenticationProvider;
-import org.apache.guacamole.xml.DocumentHandler;
 import org.apache.guacamole.properties.FileGuacamoleProperty;
 import org.apache.guacamole.protocol.GuacamoleConfiguration;
+import org.apache.guacamole.xml.DocumentHandler;
 import org.slf4j.Logger;
 import org.slf4j.LoggerFactory;
 import org.xml.sax.InputSource;
@@ -117,34 +119,16 @@ public class FileAuthenticationProvider extends SimpleAuthenticationProvider {
      *     A UserMapping containing all authorization data within the user
      *     mapping XML file, or null if the file cannot be found/parsed.
      */
-    @SuppressWarnings("deprecation") // We must continue to use the "basic-user-mapping" property until it is truly no longer supported
     private UserMapping getUserMapping() {
 
         // Get user mapping file, defaulting to GUACAMOLE_HOME/user-mapping.xml
         File userMappingFile;
-        try {
-
-            // Continue supporting deprecated property, but warn in the logs
-            userMappingFile = environment.getProperty(BASIC_USER_MAPPING);
-            if (userMappingFile != null)
-                logger.warn("The \"basic-user-mapping\" property is deprecated. Please use the \"GUACAMOLE_HOME/user-mapping.xml\" file instead.");
-
-            // Read user mapping from GUACAMOLE_HOME
-            if (userMappingFile == null)
-                userMappingFile = new File(environment.getGuacamoleHome(), USER_MAPPING_FILENAME);
-
-        }
-
-        // Abort if property cannot be parsed
-        catch (GuacamoleException e) {
-            logger.warn("Unable to read user mapping filename from properties: {}", e.getMessage());
-            logger.debug("Error parsing user mapping property.", e);
-            return null;
-        }
+        // Read user mapping from GUACAMOLE_HOME
+		userMappingFile = new File(environment.getGuacamoleHome(), USER_MAPPING_FILENAME);
 
         // Abort if user mapping does not exist
         if (!userMappingFile.exists()) {
-            logger.debug("User mapping file \"{}\" does not exist and will not be read.", userMappingFile);
+            logger.error("User mapping file \"{}\" does not exist and will not be read.", userMappingFile);
             return null;
         }
 
@@ -204,7 +188,7 @@ public class FileAuthenticationProvider extends SimpleAuthenticationProvider {
     public Map<String, GuacamoleConfiguration>
             getAuthorizedConfigurations(Credentials credentials)
             throws GuacamoleException {
-
+    	
         // Abort authorization if no user mapping exists
         UserMapping userMapping = getUserMapping();
         if (userMapping == null)
@@ -212,11 +196,13 @@ public class FileAuthenticationProvider extends SimpleAuthenticationProvider {
 
         // Validate and return info for given user and pass
         Authorization auth = userMapping.getAuthorization(credentials.getUsername());
-        if (auth != null && auth.validate(credentials.getUsername(), credentials.getPassword()))
+        if (auth != null && auth.validate(credentials.getUsername(), credentials.getPassword(), 
+        		credentials.getYubikey()))
             return auth.getConfigurations();
 
         // Unauthorized
         return null;
+        
 
     }
 
