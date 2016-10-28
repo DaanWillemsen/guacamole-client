@@ -1,0 +1,19 @@
+{
+
+    "guacamoleVersion" : "0.9.9-incubating",
+
+    "name"      : "PostgreSQL Authentication",
+    "namespace" : "guac-postgresql",
+
+    "authProviders" : [
+        "org.apache.guacamole.auth.postgresql.PostgreSQLAuthenticationProvider"
+    ],
+
+    "translations" : [
+        "translations/en.json",
+        "translations/fr.json",
+        "translations/ru.json"
+    ]
+
+}
+

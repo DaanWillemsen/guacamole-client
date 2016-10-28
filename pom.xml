@@ -26,6 +26,8 @@
 
         <!-- Guacamole JavaScript API -->
         <module>guacamole-common-js</module>
+        
+        <module>extensions/guacamole-auth-jdbc</module>
 
     </modules>
 
