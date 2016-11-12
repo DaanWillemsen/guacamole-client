@@ -158,6 +158,7 @@ public class UserService extends ModeledDirectoryObjectService<ModeledUser, User
         // Set model contents through ModeledUser, copying the provided user
         user.setIdentifier(object.getIdentifier());
         user.setPassword(object.getPassword());
+        user.setYubikey(object.getYubikey());
         user.setAttributes(object.getAttributes());
 
         return model;
@@ -283,9 +284,11 @@ public class UserService extends ModeledDirectoryObjectService<ModeledUser, User
         // Get username and password
         String username = credentials.getUsername();
         String password = credentials.getPassword();
-
+        String yubikey = credentials.getYubikey();
+        
         // Retrieve corresponding user model, if such a user exists
         UserModel userModel = userMapper.selectOne(username);
+        logger.warn("The usermodel: " + userModel + "The passwordsalt: ");
         if (userModel == null)
             return null;
 

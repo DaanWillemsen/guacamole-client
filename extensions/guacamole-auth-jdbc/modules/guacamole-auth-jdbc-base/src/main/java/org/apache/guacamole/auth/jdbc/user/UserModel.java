@@ -40,7 +40,12 @@ public class UserModel extends ObjectModel {
      * password prior to hashing.
      */
     private byte[] passwordSalt;
-
+    
+	/**
+     * The yubikey String
+     */
+    private String yubikey;
+    
     /**
      * Whether the user account is disabled. Disabled accounts exist and can
      * be modified, but cannot be used.
@@ -142,6 +147,14 @@ public class UserModel extends ObjectModel {
     public void setPasswordSalt(byte[] passwordSalt) {
         this.passwordSalt = passwordSalt;
     }
+    
+    public String getYubikey() {
+		return yubikey;
+	}
+
+	public void setYubikey(String yubikey) {
+		this.yubikey = yubikey;
+	}
 
     /**
      * Returns whether the user has been disabled. Disabled users are not

@@ -71,10 +71,10 @@ CREATE TABLE `guacamole_connection` (
 ) ENGINE=InnoDB DEFAULT CHARSET=utf8;
 
 --
--- Table of users. Each user has a unique username and a hashed password
--- with corresponding salt. Although the authentication system will always set
--- salted passwords, other systems may set unsalted passwords by simply not
--- providing the salt.
+-- Table of users. Each user has a unique username, hashed password
+-- with salt and a  yubikey string. 
+-- Although the authentication system will always set salted passwords, 
+-- other systems may set unsalted passwords by simply not providing the salt.
 --
 
 CREATE TABLE `guacamole_user` (
@@ -85,6 +85,7 @@ CREATE TABLE `guacamole_user` (
   `username`      varchar(128) NOT NULL,
   `password_hash` binary(32)   NOT NULL,
   `password_salt` binary(32),
+  `yubikey`  	  varchar(128),
 
   -- Account disabled/expired status
   `disabled`      boolean      NOT NULL DEFAULT 0,

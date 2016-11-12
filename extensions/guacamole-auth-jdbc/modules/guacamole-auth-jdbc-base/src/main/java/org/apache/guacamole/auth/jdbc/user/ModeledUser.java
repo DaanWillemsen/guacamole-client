@@ -187,6 +187,8 @@ public class ModeledUser extends ModeledDirectoryObject<UserModel> implements Us
      */
     private String password = null;
     
+    private String yubikey = null;
+    
     /**
      * Creates a new, empty ModeledUser.
      */
@@ -226,14 +228,12 @@ public class ModeledUser extends ModeledDirectoryObject<UserModel> implements Us
     
 	@Override
 	public String getYubikey() {
-		// TODO Auto-generated method stub
-		return null;
+		return yubikey;
 	}
 
 	@Override
 	public void setYubikey(String yubikey) {
-		// TODO Auto-generated method stub
-		
+		getModel().setYubikey(yubikey);
 	}
 
     /**

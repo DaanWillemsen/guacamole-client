@@ -104,9 +104,9 @@ public class FileAuthenticationProvider extends SimpleAuthenticationProvider {
         environment = new LocalEnvironment();
     }
 
-    @Override
+    //@Override
     public String getIdentifier() {
-        return "default";
+        return "default_mod";
     }
 
     /**
@@ -184,7 +184,7 @@ public class FileAuthenticationProvider extends SimpleAuthenticationProvider {
 
     }
 
-    @Override
+    //@Override
     public Map<String, GuacamoleConfiguration>
             getAuthorizedConfigurations(Credentials credentials)
             throws GuacamoleException {

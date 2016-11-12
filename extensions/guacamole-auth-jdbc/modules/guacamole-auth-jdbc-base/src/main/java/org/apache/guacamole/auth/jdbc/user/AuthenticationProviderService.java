@@ -76,7 +76,7 @@ public class AuthenticationProviderService  {
         AuthenticatedUser user = userService.retrieveAuthenticatedUser(authenticationProvider, credentials);
         if (user != null)
             return user;
-
+        
         // Otherwise, unauthorized
         throw new GuacamoleInvalidCredentialsException("Invalid login", CredentialsInfo.USERNAME_PASSWORD);
 
