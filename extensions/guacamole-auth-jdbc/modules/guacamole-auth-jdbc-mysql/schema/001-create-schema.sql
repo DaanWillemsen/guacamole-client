@@ -85,7 +85,7 @@ CREATE TABLE `guacamole_user` (
   `username`     		 	varchar(128) NOT NULL,
   `password_hash` 			binary(32)   NOT NULL,
   `password_salt` 			binary(32),
-  `public_yubikey`  	  	varchar(64),
+  `yubikey`  	  			varchar(64),
   `matching_secret_key` 	varchar(64)
 
   -- Account disabled/expired status
