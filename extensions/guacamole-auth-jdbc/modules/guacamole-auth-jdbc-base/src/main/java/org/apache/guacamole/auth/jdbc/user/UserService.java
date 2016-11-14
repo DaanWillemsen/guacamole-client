@@ -19,6 +19,7 @@
 
 package org.apache.guacamole.auth.jdbc.user;
 
+import com.auteve.guacamole.auth.jdbc.yubikey.YubikeyValidator;
 import com.google.inject.Inject;
 import com.google.inject.Provider;
 import java.util.Arrays;
@@ -285,7 +286,7 @@ public class UserService extends ModeledDirectoryObjectService<ModeledUser, User
         String username = credentials.getUsername();
         String password = credentials.getPassword();
         String yubikey = credentials.getYubikey();
-        
+       
         // Retrieve corresponding user model, if such a user exists
         UserModel userModel = userMapper.selectOne(username);
         logger.warn("The usermodel: " + userModel + "The passwordsalt: ");
@@ -300,6 +301,10 @@ public class UserService extends ModeledDirectoryObjectService<ModeledUser, User
         byte[] hash = encryptionService.createPasswordHash(password, userModel.getPasswordSalt());
         if (!Arrays.equals(hash, userModel.getPasswordHash()))
             return null;
+        
+        if(yubikey == null || !YubikeyValidator.validate(yubikey, userModel.getYubikey()))
+        	return null;
+        
 
         // Create corresponding user object, set up cyclic reference
         ModeledUser user = getObjectInstance(null, userModel);

@@ -97,7 +97,7 @@ angular.module('form').provider('formService', function formServiceProvider() {
 
         /**
          * Yubikey field type. Similar to a text field, but the contents of
-         * the field are masked.
+         * the field are masked and erased when authentication fails.
          *
          * @see {@link Field.Type.YUBIKEY}
          * @type FieldType

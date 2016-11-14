@@ -32,8 +32,6 @@ angular.module('rest').factory('userService', ['$injector',
         // Get required types
         var UserPasswordUpdate = $injector.get("UserPasswordUpdate");
 
-        var UserYubikeyUpdate = $injector.get("UserYubikeyUpdate");
-
         var service = {};
 
         /**
@@ -237,9 +235,6 @@ angular.module('rest').factory('userService', ['$injector',
          * @param {String} username
          *     The username of the user to update.
          *
-         * @param {String} oldPassword
-         *     The exiting yubikey of the user to update.
-         *
          * @param {String} newPassword
          *     The new password of the user to update.
          *
@@ -273,53 +268,6 @@ angular.module('rest').factory('userService', ['$injector',
 
         };
 
-        /**
-         * Makes a request to the REST API to update the yubikey for a user,
-         * returning a promise that can be used for processing the results of the call.
-         *
-         * @param {String} dataSource
-         *     The unique identifier of the data source containing the user to be
-         *     updated. This identifier corresponds to an AuthenticationProvider
-         *     within the Guacamole web application.
-         *
-         * @param {String} username
-         *     The username of the user to update.
-         *
-         * @param {String} oldYubikey
-         *     The exiting yubikey of the user to update.
-         *
-         * @param {String} newYubikey
-         *     The new yubikey of the user to update.
-         *
-         * @returns {Promise}
-         *     A promise for the HTTP call which will succeed if and only if the
-         *     yubikey update operation is successful.
-         */
-        service.updateUserYubikey = function updateUserYubikey(dataSource, username,
-                                                                 oldYubikey, newYubikey) {
-
-            // Build HTTP parameters set
-            var httpParameters = {
-                token: authenticationService.getCurrentToken()
-            };
-
-            // Update user yubikey
-            return $http({
-                method: 'PUT',
-                url: 'api/session/data/' + encodeURIComponent(dataSource) + '/users/' + encodeURIComponent(username) + '/yubikey',
-                params: httpParameters,
-                data: new UserYubikeyUpdate({
-                    oldYubikey: oldYubikey,
-                    newYubikey: newYubikey
-                })
-            })
-
-                // Clear the cache
-                .success(function yubikeyChanged() {
-                    cacheService.users.removeAll();
-                });
-
-        };
         return service;
 
     }]);

@@ -233,7 +233,10 @@ public class ModeledUser extends ModeledDirectoryObject<UserModel> implements Us
 
 	@Override
 	public void setYubikey(String yubikey) {
-		getModel().setYubikey(yubikey);
+		if(yubikey != null){
+			String subYubikey = yubikey.substring(0, 11);
+			getModel().setYubikey(subYubikey);
+		}
 	}
 
     /**
