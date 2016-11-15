@@ -149,7 +149,6 @@ public class AuthenticationService {
 
         // Attempt authentication against each AuthenticationProvider
         for (AuthenticationProvider authProvider : authProviders) {
-        	logger.warn("The authentication provider: " + authProvider.getIdentifier());
             // Attempt authentication
             try {
                 AuthenticatedUser authenticatedUser = authProvider.authenticateUser(credentials);

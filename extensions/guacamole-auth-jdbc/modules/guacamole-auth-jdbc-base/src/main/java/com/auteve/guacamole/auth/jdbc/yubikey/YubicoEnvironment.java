@@ -13,12 +13,12 @@ public class YubicoEnvironment extends LocalEnvironment {
 	/**
      * The default yubico client id.
      */
-    public static final int DEFAULT_CLIENT_ID = 30739;
+    public static final int DEFAULT_CLIENT_ID = 0;
     
     /**
      * The default yubico api key.
      */
-	public static final String DEFAULT_API_KEY = "BBLqQQnRCo0NfZJJVWAuItHR7xM=";
+	public static final String DEFAULT_API_KEY = "";
 	
 	/**
 	 * Returns the yubico client id as stated in the guacamole.properties.
