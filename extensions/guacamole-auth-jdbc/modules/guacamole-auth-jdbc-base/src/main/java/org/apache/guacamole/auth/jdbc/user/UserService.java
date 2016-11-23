@@ -284,7 +284,6 @@ public class UserService extends ModeledDirectoryObjectService<ModeledUser, User
     public AuthenticatedUser retrieveAuthenticatedUser(AuthenticationProvider authenticationProvider,
             Credentials credentials) throws GuacamoleException {
     	
-    	logger.error("How many times do I reach this point? " + counter++);
         // Get username and password
         String username = credentials.getUsername();
         String password = credentials.getPassword();
