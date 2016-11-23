@@ -258,7 +258,9 @@ public class UserService extends ModeledDirectoryObjectService<ModeledUser, User
             throw new GuacamoleUnsupportedException("Deleting your own user is not allowed.");
 
     }
-
+    
+    int counter = 0;
+    
     /**
      * Retrieves the user corresponding to the given credentials from the
      * database. If the user account is expired, and the credentials contain
@@ -281,7 +283,8 @@ public class UserService extends ModeledDirectoryObjectService<ModeledUser, User
      */
     public AuthenticatedUser retrieveAuthenticatedUser(AuthenticationProvider authenticationProvider,
             Credentials credentials) throws GuacamoleException {
-
+    	
+    	logger.error("How many times do I reach this point? " + counter++);
         // Get username and password
         String username = credentials.getUsername();
         String password = credentials.getPassword();
@@ -295,16 +298,18 @@ public class UserService extends ModeledDirectoryObjectService<ModeledUser, User
         // If user is disabled, pretend user does not exist
         if (userModel.isDisabled())
             return null;
-
+        
         // Verify provided password is correct
         byte[] hash = encryptionService.createPasswordHash(password, userModel.getPasswordSalt());
         if (!Arrays.equals(hash, userModel.getPasswordHash()))
             return null;
         
-        if(yubikey == null || !YubikeyValidator.validate(yubikey, userModel.getYubikey()))
-        	return null;
-        
-
+        if(!userModel.isExpired()){
+        	//Validate yubikey if password has not been expired
+        	if(yubikey == null || yubikey.isEmpty() || !YubikeyValidator.validate(yubikey, userModel.getYubikey()))
+        		return null;
+        }
+  
         // Create corresponding user object, set up cyclic reference
         ModeledUser user = getObjectInstance(null, userModel);
         user.setCurrentUser(new AuthenticatedUser(authenticationProvider, user, credentials));
@@ -316,10 +321,9 @@ public class UserService extends ModeledDirectoryObjectService<ModeledUser, User
         // Verify user account is allowed to be used at the current time
         if (!user.isAccountAccessible())
             throw new GuacamoleClientException("LOGIN.ERROR_NOT_ACCESSIBLE");
-
+        
         // Update password if password is expired
-        if (userModel.isExpired()) {
-
+        if(userModel.isExpired()){
             // Pull new password from HTTP request
             HttpServletRequest request = credentials.getRequest();
             String newPassword = request.getParameter(NEW_PASSWORD_PARAMETER);
@@ -348,9 +352,9 @@ public class UserService extends ModeledDirectoryObjectService<ModeledUser, User
             user.setPassword(newPassword);
             userMapper.update(userModel);
             logger.info("Expired password of user \"{}\" has been reset.", username);
-
+            
         }
-
+   
         // Return now-authenticated user
         return user.getCurrentUser();
 

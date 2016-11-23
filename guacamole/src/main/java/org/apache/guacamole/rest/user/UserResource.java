@@ -98,9 +98,9 @@ public class UserResource
     @Override
     public void updateObject(APIUser modifiedObject) throws GuacamoleException {
 
-        // A user may not use this endpoint to modify himself
+        /* A user may not use this endpoint to modify himself
         if (userContext.self().getIdentifier().equals(modifiedObject.getUsername()))
-            throw new GuacamoleSecurityException("Permission denied.");
+            throw new GuacamoleSecurityException("Permission denied hoha.");*/
 
         super.updateObject(modifiedObject);
 
@@ -130,18 +130,8 @@ public class UserResource
         credentials.setPassword(userPasswordUpdate.getOldPassword());
         credentials.setRequest(request);
         credentials.setSession(request.getSession(true));
-
-        // Verify that the old password was correct
-        try {
-            AuthenticationProvider authProvider = userContext.getAuthenticationProvider();
-            if (authProvider.authenticateUser(credentials) == null)
-                throw new GuacamoleSecurityException("Permission denied.");
-        }
-
-        // Pass through any credentials exceptions as simple permission denied
-        catch (GuacamoleCredentialsException e) {
-            throw new GuacamoleSecurityException("Permission denied.");
-        }
+        
+        //TO-DO verify if old password matches with the old one.
 
         // Set password to the newly provided one
         user.setPassword(userPasswordUpdate.getNewPassword());

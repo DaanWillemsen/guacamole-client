@@ -154,10 +154,6 @@ angular.module('login').directive('guacLogin', [function guacLogin() {
 
             // Reset upon failure
             ['catch'](function loginFailed(error) {
-
-                // Clear out passwords if the credentials were rejected for any reason
-                if (error.type !== Error.Type.INSUFFICIENT_CREDENTIALS) {
-
                     // Flag generic error for invalid login
                     if (error.type === Error.Type.INVALID_CREDENTIALS)
                         $scope.loginError = 'LOGIN.ERROR_INVALID_LOGIN';
@@ -174,7 +170,7 @@ angular.module('login').directive('guacLogin', [function guacLogin() {
                             $scope.enteredValues[field.name] = '';
 
                     });
-                    // Clear all visible password fields
+                    // Clear yubikey fields
                     angular.forEach($scope.remainingFields, function clearEnteredValueIfYubikey(field) {
 
                         // Remove entered value only if field is a password field
@@ -182,7 +178,7 @@ angular.module('login').directive('guacLogin', [function guacLogin() {
                             $scope.enteredValues[field.name] = '';
 
                     });
-                }
+                
 
             });
 

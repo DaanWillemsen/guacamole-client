@@ -184,7 +184,8 @@ angular.module('settings').directive('guacSettingsPreferences', [function guacSe
 
                 // Add action for changing password if permission is granted
                 $scope.canChangePassword = PermissionSet.hasUserPermission(permissions,
-                        PermissionSet.ObjectPermissionType.UPDATE, username)
+                        PermissionSet.ObjectPermissionType.UPDATE, username);
+
             });
 
             /**

@@ -953,17 +953,6 @@ angular.module('manage').controller('manageUserController', ['$scope', '$injecto
             return;
         }
 
-        // Verify yubikeys match
-        if ($scope.yubikeyMatch !== $scope.user.yubikey) {
-            guacNotification.showStatus({
-                'className'  : 'error',
-                'title'      : 'MANAGE_USER.DIALOG_HEADER_ERROR',
-                'text'       : 'MANAGE_USER.ERROR_YUBIKEY_MISMATCH',
-                'actions'    : [ ACKNOWLEDGE_ACTION ]
-            });
-            return;
-        }
-
         // Save or create the user, depending on whether the user exists
         var saveUserPromise;
         if ($scope.userExists(selectedDataSource))
